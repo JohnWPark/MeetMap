@@ -55,7 +55,7 @@ angular.module('gservice', [])
 
         // Converts each of the JSON records into Google Maps location format (Note: [Lat, Lng] format).
         locations.push({
-          latlong: new google.maps.LatLng(user.location[1], user.location[0]),
+          latlon: new google.maps.LatLng(user.location[1], user.location[0]),
           message: new google.maps.InfoWindow({
             content: contentString,
             maxWidth: 320
