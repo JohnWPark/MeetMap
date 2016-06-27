@@ -1,6 +1,6 @@
 // Creates the gservice factory.  This will be  the primary means by which we interact with Google MeanMapsApp
 angular.module('gservice', [])
-  .factory('gservice', function($http) {
+  .factory('gservice', function($rootScope, $http) {
 
     // Initialize Variables
     // Service our factory will return
@@ -136,6 +136,11 @@ var initialize = function(latitude, longitude) {
     // Create a new red bouncing marker and move to it
     lastMarker = marker;
     map.panTo(marker.position);
+
+    // Update Broadcasted variable (lets the panels know to change their lat, long values)
+    googleMapService.clickLat = marker.getPosition().lat();
+    googleMapService.clickLong = marker.getPosition().lng();
+    $rootScope.$broadcast("clicked");
   });
 };
 
