@@ -1,12 +1,12 @@
 <!-- "Join Team" (Post) Form -->
 <div class="col-md-5">
 
-  <!-- Creates main panel -->
+    <!-- Creates Main Panel -->
     <div class="panel panel-default">
 
         <!-- Panel Title -->
         <div class="panel-heading">
-            <h2 class="panel-title text-center">Join the Team! <span class="glyphicon glyphicon-map-marker"></span></h2>
+            <h2 class="panel-title text-center">Join the Scotch Team! <span class="glyphicon glyphicon-map-marker"></span></h2>
         </div>
 
         <!-- Panel Body -->
@@ -41,7 +41,7 @@
                 </div>
                 <div class="form-group">
                     <label for="age">Age</label>
-                    <input type="number" class="form-control" id="age" placeholder="1,000" ng-model="formData.age" required>
+                    <input type="number" class="form-control" id="age" placeholder="1000" ng-model="formData.age" required>
                 </div>
                 <div class="form-group">
                     <label for="language">Favorite Language</label>
@@ -56,7 +56,8 @@
                     <input type="text" class="form-control" id="longitude" value="-98.350" ng-model="formData.longitude" readonly>
                 </div>
                 <div class="form-group">
-                    <label for="verified">HTML5 Verified Location? <span><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-refresh"></span></button></span></label>
+                    <!-- Note RefreshLoc button tied to addCtrl. This requests a refresh of the HTML5 verified location. -->
+                    <label for="verified">HTML5 Verified Location? <span><button ng-click="refreshLoc()" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-refresh"></span></button></span></label>
                     <input type="text" class="form-control" id="verified" placeholder= "Nope (Thanks for spamming my map...)" ng-model="formData.htmlverified" readonly>
                 </div>
 
