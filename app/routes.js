@@ -78,7 +78,7 @@ module.exports = function(app){
 
     // Include filter by Max Age
     if(maxAge){
-      query = query.where('age'.lte(maxAge);
+      query = query.where('age').lte(maxAge);
     }
 
     // Include filter by Favorite Language
