@@ -16,8 +16,8 @@ angular.module('gservice', [])
     var selectedLong = -98.35;
 
     // Functions
-    // Refresh the map with new data.  Function will take new lat and long coordinates
-    googleMapService.refresh = function(latitude, longitude) {
+    // Refresh the map with new data.  Takes 3 parameters (lat, long, filtering results)
+    googleMapService.refresh = function(latitude, longitude, filteredResults) {
 
       // Clears the holding array of locations
       locations = [];
@@ -25,6 +25,30 @@ angular.module('gservice', [])
       // Set the selected lat and long equal to the ones provided on the refresh() call
       selectedLat = latitude;
       selectedLong = longitude;
+
+      // If filtered results are provided in the refresh() call...
+      if(filteredResults){
+
+        // Then convert the filtered results into map points.
+        locations = convertToMapPoints(filteredResults);
+
+        // Then, initialize the map  -- noting that a filter was used to mark icons yellow
+        initialize(latitude, longitude, true);
+      }
+
+      // If not filter is provided in the refresh() call...
+      else{
+
+        // Perform an AJAX call to get all of the records in the db.
+        $http.get('/users').success(function(response){
+
+          // Then convert the results into map points
+          locations = convertToMapPoints(response);
+
+          // Then initialize the map -- noting that no filter was used
+          initialize(latitude, longitude, false);
+        }).error(function(){});
+      }
 
       // Perform an AJAX call to get all of the records in the db
       $http.get('/users').success(function(response) {
